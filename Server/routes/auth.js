@@ -24,6 +24,17 @@ mongoose.connect(db, (err) => {
     }
   });
 
+// find all users
+  router.get('/allusers', async (req, res) => {
+    const users = await userModel.find();
+    res.send(users);
+    (error) => {
+      res.sendStatus(500)
+      console.error(error)
+    }
+  });
+
+
 
   // Enregistrement nouveau utilisateur
   router.post('/register', async (req, res) => {
@@ -85,5 +96,13 @@ router.put('/updateuser/:id', async (req, res) => {
   const result = await userModel.update({ _id: req.params.id }, { $set: req.body });
   res.send(result);
 });
+
+//find user by id
+router.get('/userbyid/:id', async (req, res) => {
+  const idUser = {_id: req.params.id}
+    const result = await userModel.findById(idUser);
+    res.send(result);
+  
+  });
 
 module.exports = router;

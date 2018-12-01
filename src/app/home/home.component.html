@@ -7,14 +7,35 @@
                     <div class="card-body">
                       <h5 class="card-title">{{item.date | date}}</h5>
                       <p class="card-text">{{item.content}}</p>
-
-                      <i class="fas fa-user"></i>{{item.author.name}}<i class="far fa-calendar-alt"></i>
+                      <i class="fas fa-user user-fa"></i>{{item.author.name}}<i class="far fa-calendar-alt"></i>
+                      <h6>Comments :</h6>
+                    <p *ngFor="let items of item.comments">{{items.content}}</p>
+                        <div class="status-upload" *ngIf="isLoggedIn">
+                          <form  [formGroup]="formComments">
+                            <textarea placeholder="add comment" formControlName="content"></textarea>
+                    
+                            <button type="submit" class="btn btn-success green" (click)="postComment(item._id)"><i class="fa fa-share"></i> Share</button>
+                          </form>
+                        </div><!-- Status Upload  -->
+                     
                     </div>
+               
+                     
+              
                   </div>
-<br>
+                  <br>
                 </div>
-
+            
               </div>
-
+              
+            
             </div>
 
+      
+         
+              
+             
+              
+           
+                  
+           

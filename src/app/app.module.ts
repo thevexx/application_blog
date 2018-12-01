@@ -10,6 +10,8 @@ import { ListsubjectComponent } from './listsubject/listsubject.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { AddarticleComponent } from './addarticle/addarticle.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ListuserComponent } from './listuser/listuser.component';
 
 
 
@@ -22,6 +24,8 @@ import { AddarticleComponent } from './addarticle/addarticle.component';
     HomeComponent,
     MenuComponent,
     AddarticleComponent,
+    DashboardComponent,
+    ListuserComponent,
 
 
   ],

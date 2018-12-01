@@ -47,4 +47,29 @@ updateArticle(id, editarticle) {
 getComment() {
   return this.http.get('http://localhost:8020/blog/comment');
 }
+
+addComments(id, data) {
+  console.log('comment service', data);
+  console.log('id article comment service', id);
+
+  return this.http.post('http://localhost:8020/blog/comment/' + id, data);
+}
+getAllusers() {
+  return this.http.get('http://localhost:8020/auth/allusers/');
+}
+
+
+editUsers(id, data) {
+  console.log('edit user id', id);
+  console.log('edit user id data', data);
+  return this.http.put('http://localhost:8020/auth/updateuser/'+ id, data);
+}
+
+getUserbyid(id){
+  return this.http.get('http://localhost:8020/auth/userbyid/'+ id)
+}
+
+deleteUserbyId(id) {
+  return this.http.delete('http://localhost:8020/auth/removeuser/' + id)
+}
 }

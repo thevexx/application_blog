@@ -1,0 +1,229 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3" >
+            <div class="card-counter info" (click)="getUsers()" type="submit">
+              <i class="fa fa-users" ></i>
+              <span class="count-numbers">Users</span>
+             </div>
+          </div>
+
+    <div class="col-md-3">
+      <div class="card-counter primary " (click)="getAllarticle()" type="submit">
+          <i class="far fa-file-alt"></i>
+        <span class="count-numbers">Articles</span>
+         
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter danger">
+        <i class="fa fa-ticket"></i>
+        <span class="count-numbers">599</span>
+        <span class="count-name">Instances</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter success">
+        <i class="fa fa-database"></i>
+        <span class="count-numbers">6875</span>
+        <span class="count-name">Data</span>
+      </div>
+    </div>
+
+   
+  </div>
+</div>
+
+
+
+<!-- Table All users-->
+ 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+<div *ngIf="userclick">
+    <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Edit/Remove</th>
+          </tr>
+        </thead>
+        </table>
+    <div *ngFor="let item of userclick">
+<div class="table-wrapper-scroll-y">
+
+    <table class="table table-bordered table-striped">
+    
+      <tbody>
+        <tr>
+          <th scope="row">{{item.name}}</th>
+          <td>{{item.lastname}}</td>
+          <td>{{item.email}}</td>
+          <td> 
+             <span class="badge badge-success"  data-toggle="modal" data-target="#exampleModal" type="submit" (click)="getUserId(item._id)" >UPDATE</span>&nbsp;
+            <a class="badge badge-danger" type="submit" data-toggle="modal" data-target="#modalConfirmDelete" (click)="getUserId(item._id)">REMOVE</a></td>
+        </tr>
+    
+      </tbody>
+    </table>
+  
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal edidt user-->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="clickIduser">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  [formGroup]="editForm">
+                <div class="form-group">
+                    <label for="title">Name <span class="require">*</span></label>
+                    <input type="text" class="form-control" name="title" fo value="{{ clickIduser.name }}" formControlName="name"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Lastname <span class="require">*</span></label>
+                    <input type="text" class="form-control" name="title" fo value="{{ clickIduser.lastname }}" formControlName="lastname"/>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="title">Email <span class="require">*</span></label>
+                    <input type="text" class="form-control" name="title" fo value="{{ clickIduser.email }}" formControlName="email"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Password <span class="require">*</span></label>
+                    <input type="text" class="form-control" name="title" fo value="{{ clickIduser.password }}" formControlName="password"/>
+                </div>
+
+                <div class="form-group">
+                    <p><span class="require">*</span> - required fields</p>
+                </div>
+
+                <div class="form-group">
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  (click)="editUser(clickIduser._id)">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Delete User -->
+
+  <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" *ngIf="clickIduser">
+    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    
+      <div class="modal-content text-center">
+       
+        <div class="modal-header d-flex justify-content-center">
+          <p class="heading">Are you sure?</p>
+        </div>
+
+        <div class="modal-body">
+  
+          <i class="fa fa-times fa-4x animated rotateIn"></i>
+
+        </div>
+        <div class="modal-footer flex-center">
+          <a  type="button" class="btn  btn-outline-danger"  data-dismiss="modal" (click)="removeUser(clickIduser._id)">Yes</a>
+          <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- List all articles -->
+  <div class="container-fluid " *ngIf = "allArticle">
+      <div class="row " *ngFor="let item of allArticle" >
+        <div class="col-md-8 offset-md-2">
+          <div class="card">
+            <h5 class="card-header">{{item.title}}</h5>
+            <div class="card-body">
+              <h5 class="card-title">{{item.date | date}}</h5>
+
+               <p class="card-text">{{item.content}}</p>
+              <br>
+
+        
+              <i class="fas fa-user"></i>&nbsp;{{item.author.name}} <button type="submit" class="btn btn-warning px-3" (click)="deleteSubjectID(item._id)">
+                Delete</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="updateArticleID(item._id)">
+                 Update
+                </button>
+
+            </div>
+        </div>
+        <br>
+
+      </div>
+
+    </div>
+
+    </div>
+ 
+    
+    <!-- Modal edit article-->
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="clickUpdateArticle">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  
+            </button>
+          </div>
+          <div class="modal-body">
+              <form  [formGroup]="editArticle">
+                  <div class="form-group">
+                      <label for="title">Title <span class="require">*</span></label>
+                      <input type="text" class="form-control" name="title" fo value="{{ clickUpdateArticle.title }}" formControlName="title"/>
+                  </div>
+  
+                  <div class="form-group">
+                      <label for="description">Description<span class="require">*</span></label>
+                      <textarea rows="5" class="form-control" name="description" value="{{ clickUpdateArticle.content }}"  formControlName="content"></textarea>
+                  </div>
+  
+                  <div class="form-group">
+                      <p><span class="require">*</span> - required fields</p>
+                  </div>
+  
+                  <div class="form-group">
+                  </div>
+  
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary"  (click)=" updateSubjectID(clickUpdateArticle._id)">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+   
