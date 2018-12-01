@@ -34,7 +34,7 @@ const newArticle =  await new articleModel(req.body);
 })
 //find all articles
 router.get('/article', async (req, res) => {
-const getArticle = await articleModel.find().populate({ path: 'author' }).populate({ path: 'commentuser' });
+const getArticle = await articleModel.find().populate({ path: 'author' }).populate({ path: 'comments' });
 res.send(getArticle);
 (error) => {
   res.sendStatus(500)
@@ -46,7 +46,7 @@ res.send(getArticle);
 //find article by id
 router.get('/article/:id', async (req, res) => {
 const idArticle = {_id: req.params.id}
-  const result = await articleModel.findById(idArticle).populate({ path: 'comments' }).populate({ path: 'author' });
+  const result = await articleModel.findById(idArticle).populate({ path: 'author' }).populate({ path: 'comments' });
   res.send(result);
 
 });

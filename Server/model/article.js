@@ -14,7 +14,7 @@ var article = new mongoose.Schema({
   },
 comments:[{
   type : Schema.Types.ObjectId,
-  ref : 'commentuser'
+  ref : 'comment'
 }]
 })
 module.exports = article;
