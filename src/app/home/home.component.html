@@ -1,0 +1,20 @@
+
+          <div class="container-fluid " >
+              <div class="row " *ngFor="let item of allArticles" >
+                <div class="col-md-8 offset-md-2"   >
+                  <div class="card">
+                    <h5 class="card-header">{{item.title}}</h5>
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.date | date}}</h5>
+                      <p class="card-text">{{item.content}}</p>
+
+                      <i class="fas fa-user"></i>{{item.author.name}}<i class="far fa-calendar-alt"></i>
+                    </div>
+                  </div>
+<br>
+                </div>
+
+              </div>
+
+            </div>
+

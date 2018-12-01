@@ -1,0 +1,86 @@
+
+          <div class="container-fluid " >
+            <div class="row " *ngFor="let item of result" >
+
+
+              <div class="col-md-8 offset-md-2">
+                <div class="card">
+                  <h5 class="card-header">{{item.title}}</h5>
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.date | date}}</h5>
+
+                     <p class="card-text">{{item.content}}</p>
+                    <br>
+                    <h5>Comments :</h5>
+                    <div>
+                    <p *ngFor="let items of item.comments"> {{items.content}}</p>
+                    <div class="span4 well" style="padding-bottom:0">
+                      <form accept-charset="UTF-8" action="" method="POST">
+                          <textarea class="span4" id="new_message" name="new_message"
+                          placeholder="Type in your message" rows="5"></textarea>
+                          <h6 class="pull-right">320 characters remaining</h6>
+                          <button class="btn btn-info" type="submit">Post New Message</button>
+                      </form>
+                  </div>
+                </div>
+                    <i class="fas fa-user"></i>&nbsp;{{item.author.name}} <button type="submit" class="btn btn-warning px-3" (click)="deleteSubject(item._id)">
+                      Delete</button>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="update(item._id)">
+                       Update
+                      </button>
+
+
+                  </div>
+
+
+
+              </div>
+
+            </div>
+            <br>
+          </div>
+          </div>
+
+
+
+<!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="clicked">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  [formGroup]="editArticle">
+                <div class="form-group">
+                    <label for="title">Title <span class="require">*</span></label>
+                    <input type="text" class="form-control" name="title" fo value="{{ clicked.title }}" formControlName="title"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description<span class="require">*</span></label>
+                    <textarea rows="5" class="form-control" name="description" value="{{ clicked.content }}"  formControlName="content"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <p><span class="require">*</span> - required fields</p>
+                </div>
+
+                <div class="form-group">
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  (click)=" updateSubject(clicked._id)">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

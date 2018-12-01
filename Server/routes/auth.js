@@ -2,6 +2,12 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const db = 'mongodb://localhost:27017/myblog';
 const userSchema = require('../model/user');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt')
+var BCRYPT_SALT_ROUNDS = 12;
+
+
+
 // Collection dans la base de donnee
 const userModel = mongoose.model('users', userSchema)
 mongoose.connect(db, (err) => {
@@ -20,17 +26,18 @@ mongoose.connect(db, (err) => {
 
 
   // Enregistrement nouveau utilisateur
-
-  router.post('/register', (req, res) => {
+  router.post('/register', async (req, res) => {
     userModel.findOne({ email: req.body.email }, function (err, user) {
     // Vérification si l'utilisateur existe
     if (user) {
-      return res.status(400).send({ message: 'The email address you have entered is already associated with another account.' });
+      return res.status(400).send({ message: 'The email exsist.' });
     }
      // Creation du nouveau utilisateur
+     req.body.password =   bcrypt.hashSync(req.body.password, BCRYPT_SALT_ROUNDS);
      var newUser = new userModel(req.body);
      res.status(200).send({message:'Success register'});
      newUser.save();
+
    (error) => {
      res.sendStatus(500)
      console.error(error)
@@ -49,18 +56,18 @@ mongoose.connect(db, (err) => {
 
     if (!result) {
       res.send({
-        message: 'user not found'
+        message: 'Incorrect Login or Password'
       });
       console.log(result, req.body.email)
     }
     if (result.password !== req.body.password) {
       res.send({
-        message: 'bad password'
+        message: 'Incorrect Login or Password'
       });
       console.log(result, req.body.password)
     } else {
       res.send({
-        message: 'ok'
+        message: 'ok', userToken : jwt.sign({data:result},'security_pass')
       })
     }
 
