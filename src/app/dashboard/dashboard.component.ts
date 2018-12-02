@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiblogService } from '../apiblog.service';
-import { Router } from '@angular/router';
+import { Router,  NavigationStart } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as jwt_decode from 'jwt-decode';
 @Component({
@@ -18,6 +18,9 @@ export class DashboardComponent implements OnInit {
   allArticle: any;
   editArticle: FormGroup;
   clickUpdateArticle: any;
+  comments: any;
+  clickComment : any;
+  isLoggedIn: any;
 
   constructor(private apiblogservice : ApiblogService, private fb : FormBuilder) { 
     this.editForm = this.fb.group({
@@ -36,11 +39,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = localStorage.getItem('usertoken');
-    /*id user*/
-    this.userId = jwt_decode(token).data._id;
-    console.log('id utilisateur', this.userId);
-  }
+    this.isLoggedIn = localStorage.getItem('usertoken') ? true : false; /*pour changer login par logout*/
+   
+      }
+   
+ 
 //get all users
 getUsers(){
     this.userclick= this.apiblogservice.getAllusers().subscribe(res => {
@@ -82,7 +85,7 @@ getAllarticle(){
   });
 }
 
-//update article with id 
+//get article by id 
 updateArticleID(id)  {
   console.log('ID updte', id);
   this.clickUpdateArticle = this.apiblogservice.getSubjectbyId(id).subscribe(res => {
@@ -91,7 +94,7 @@ updateArticleID(id)  {
 
   });
 }
-
+// update article by id
 updateSubjectID(id) {
   console.log('id articleeessss', id);
       this.apiblogservice.updateArticle(id, this.editArticle.value).subscribe(res => {
@@ -101,10 +104,26 @@ updateSubjectID(id) {
   this.ngOnInit();
   }
 
+// delete subject by id
   deleteSubjectID(id) {
     this.apiblogservice.deleteArticle( id).subscribe(res => {
       console.log('delete article', res);
     });
 
+}
+
+getAllComments() {
+  this.apiblogservice.getComment().subscribe(res => {
+    this.comments = res.json();
+    console.log('all comments', this.comments);
+  })
+}
+
+delteComment(id){
+  this.apiblogservice.deleteCommentbyId(id).subscribe(res => {
+    this.clickComment = res.json();
+    this.ngOnInit();
+    console.log('response delete comment', res)
+  })
 }
 }

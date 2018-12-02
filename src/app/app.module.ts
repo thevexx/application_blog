@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { AddarticleComponent } from './addarticle/addarticle.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ListuserComponent } from './listuser/listuser.component';
+import { RouteGuard } from './route.guard';
 
 
 
@@ -25,8 +25,7 @@ import { ListuserComponent } from './listuser/listuser.component';
     MenuComponent,
     AddarticleComponent,
     DashboardComponent,
-    ListuserComponent,
-
+ 
 
   ],
   imports: [
@@ -37,7 +36,7 @@ import { ListuserComponent } from './listuser/listuser.component';
     HttpModule
 
   ],
-  providers: [],
+  providers: [RouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,16 +24,6 @@ mongoose.connect(db, (err) => {
     }
   });
 
-// find all users
-  router.get('/allusers', async (req, res) => {
-    const users = await userModel.find();
-    res.send(users);
-    (error) => {
-      res.sendStatus(500)
-      console.error(error)
-    }
-  });
-
 
 
   // Enregistrement nouveau utilisateur
@@ -71,7 +61,7 @@ mongoose.connect(db, (err) => {
       });
       console.log(result, req.body.email)
     }
-    if (result.password !== req.body.password) {
+    if (!bcrypt.compareSync(req.body.password , result.password )){
       res.send({
         message: 'Incorrect Login or Password'
       });
@@ -104,5 +94,17 @@ router.get('/userbyid/:id', async (req, res) => {
     res.send(result);
   
   });
+
+  // find all users
+  router.get('/allusers', async (req, res) => {
+    const users = await userModel.find();
+    res.send(users);
+    (error) => {
+      res.sendStatus(500)
+      console.error(error)
+    }
+  });
+
+
 
 module.exports = router;

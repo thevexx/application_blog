@@ -72,4 +72,8 @@ getUserbyid(id){
 deleteUserbyId(id) {
   return this.http.delete('http://localhost:8020/auth/removeuser/' + id)
 }
+
+deleteCommentbyId(id){
+  return this.http.delete('http://localhost:8020/blog/comment/' + id)
+}
 }

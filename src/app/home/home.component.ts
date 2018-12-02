@@ -43,11 +43,11 @@ postComment(id) {
   if (this.formComments.valid) {
     const token = localStorage.getItem('usertoken');
     const userId = jwt_decode(token).data._id;
-    const commentObj = {
+    const commentData = {
       "content": this.formComments.value.content,
       "author": userId
     }
-    this.apiblogservice.addComments(id, commentObj).subscribe(res => {
+    this.apiblogservice.addComments(id, commentData).subscribe(res => {
       console.log(res.json());
       this.ngOnInit();
     });

@@ -9,6 +9,7 @@
                       <p class="card-text">{{item.content}}</p>
                       <i class="fas fa-user user-fa"></i>{{item.author.name}}<i class="far fa-calendar-alt"></i>
                       <h6>Comments :</h6>
+                      <span class="d-block p-2 bg-primary text-white" *ngFor="let items of item.comments">{{items.content}}</span>
                     <p *ngFor="let items of item.comments">{{items.content}}</p>
                         <div class="status-upload" *ngIf="isLoggedIn">
                           <form  [formGroup]="formComments">

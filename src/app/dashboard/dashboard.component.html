@@ -1,5 +1,9 @@
-<div class="container">
-    <div class="row">
+<div *ngIf="!isLoggedIn">
+
+  <h1>Please Login </h1>
+</div>
+<div class="container" >
+    <div class="row" *ngIf="isLoggedIn">
 
         <div class="col-md-3" >
             <div class="card-counter info" (click)="getUsers()" type="submit">
@@ -17,10 +21,10 @@
     </div>
 
     <div class="col-md-3">
-      <div class="card-counter danger">
+      <div class="card-counter danger" (click)="getAllComments()" type="submit">
         <i class="fa fa-ticket"></i>
-        <span class="count-numbers">599</span>
-        <span class="count-name">Instances</span>
+        <span class="count-numbers">Comments</span>
+         
       </div>
     </div>
 
@@ -225,5 +229,53 @@
         </div>
       </div>
     </div>
+
+    
+    
+
+    <!-- Table all comments-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+    <div *ngIf="comments">
+        <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th scope="col">All Comments</th>
+           
+              </tr>
+            </thead>
+            </table>
+        <div *ngFor="let item of comments">
+    <div class="table-wrapper-scroll-y">
+    
+        <table class="table table-bordered table-striped">
+        
+          <tbody>
+            <tr>
+              <th scope="row">{{item.content}}</th>
+              <td>{{item.date}}</td>
+              
+              <td> 
   
-   
+                <a class="badge badge-danger" type="submit" data-toggle="modal" data-target="#modalConfirmDelete" (click)="delteComment(item._id)">REMOVE</a></td>
+            </tr>
+        
+          </tbody>
+        </table>
+      
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+    <div class="alert alert-success" role="alert" *ngIf="clickComment">
+        Comment has been deleted
+      </div>
+    </div>
+  </div>
+</div>
