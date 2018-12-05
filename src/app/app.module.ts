@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AddarticleComponent } from './addarticle/addarticle.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouteGuard } from './route.guard';
+import { RoleGuard } from './role.guard';
 
 
 
@@ -25,7 +26,7 @@ import { RouteGuard } from './route.guard';
     MenuComponent,
     AddarticleComponent,
     DashboardComponent,
- 
+
 
   ],
   imports: [
@@ -36,7 +37,7 @@ import { RouteGuard } from './route.guard';
     HttpModule
 
   ],
-  providers: [RouteGuard],
+  providers: [RouteGuard, RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

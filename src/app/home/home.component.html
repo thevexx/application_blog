@@ -1,42 +1,38 @@
+<div class="container-fluid ">
+  <div class="row " *ngFor="let item of allArticles">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <h5 class="card-header">{{item.title}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">{{item.date | date}}</h5>
+          <p class="card-text">{{item.content}}</p>
+          <i class="fas fa-user user-fa"></i> &nbsp;{{item.author.name}}
+          <h6>Comments :</h6>
 
-          <div class="container-fluid " >
-              <div class="row " *ngFor="let item of allArticles" >
-                <div class="col-md-8 offset-md-2"   >
-                  <div class="card">
-                    <h5 class="card-header">{{item.title}}</h5>
-                    <div class="card-body">
-                      <h5 class="card-title">{{item.date | date}}</h5>
-                      <p class="card-text">{{item.content}}</p>
-                      <i class="fas fa-user user-fa"></i>{{item.author.name}}<i class="far fa-calendar-alt"></i>
-                      <h6>Comments :</h6>
-                      <span class="d-block p-2 bg-primary text-white" *ngFor="let items of item.comments">{{items.content}}</span>
-                    <p *ngFor="let items of item.comments">{{items.content}}</p>
-                        <div class="status-upload" *ngIf="isLoggedIn">
-                          <form  [formGroup]="formComments">
-                            <textarea placeholder="add comment" formControlName="content"></textarea>
-                    
-                            <button type="submit" class="btn btn-success green" (click)="postComment(item._id)"><i class="fa fa-share"></i> Share</button>
-                          </form>
-                        </div><!-- Status Upload  -->
-                     
-                    </div>
-               
-                     
-              
-                  </div>
-                  <br>
-                </div>
-            
+          <div class="row" *ngFor="let items of item.comments">
+            <div class="col-md-12">
+              <div class="update-nag">
+                <div class="update-split"><i class="glyphicon glyphicon-refresh"></i> <i class="fas fa-comment iconcomment"></i></div>
+                <div class="update-text">{{items.content}} </div>
               </div>
-              
-            
             </div>
+          </div>
 
-      
-         
-              
-             
-              
-           
-                  
-           
+          <div class="status-upload" *ngIf="isLoggedIn">
+            <form [formGroup]="formComments">
+              <textarea placeholder="add comment" formControlName="content"></textarea>
+
+              <button type="submit" class="btn btn-success green" (click)="postComment(item._id)"><i class="fa fa-share"></i>
+                Post</button>
+            </form>
+          </div><!-- Status Upload  -->
+
+        </div>
+      </div>
+      <br>
+    </div>
+
+  </div>
+
+
+</div>

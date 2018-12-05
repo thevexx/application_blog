@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiblogService } from '../apiblog.service';
 import { Router,  NavigationStart } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import * as jwt_decode from "jwt-decode";
+import * as jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   idUser: any;
   articleId = '';
 
-  constructor(private apiblogservice: ApiblogService, private fb : FormBuilder) {
+  constructor(private apiblogservice: ApiblogService, private fb: FormBuilder) {
     this.formComments = this.fb.group({
       content: ['', [Validators.required, Validators.maxLength(200), Validators.minLength(4)]],
     });
@@ -30,10 +30,10 @@ export class HomeComponent implements OnInit {
   });
     /* get all comments*/
 this.apiblogservice.getComment().subscribe(res => {
-  this.allComments = res.json();
+  this.allComments = res.json().reverse();
   console.log('homee comments', this.allComments);
-})
-  this.isLoggedIn = localStorage.getItem('usertoken') ? true : false; 
+});
+  this.isLoggedIn = localStorage.getItem('usertoken') ? true : false;
     if (event instanceof NavigationStart) {
       this.isLoggedIn = localStorage.getItem('usertoken') ? true : false;
     }
@@ -44,9 +44,9 @@ postComment(id) {
     const token = localStorage.getItem('usertoken');
     const userId = jwt_decode(token).data._id;
     const commentData = {
-      "content": this.formComments.value.content,
-      "author": userId
-    }
+      'content': this.formComments.value.content,
+      'author': userId
+    };
     this.apiblogservice.addComments(id, commentData).subscribe(res => {
       console.log(res.json());
       this.ngOnInit();
