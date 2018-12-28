@@ -57,18 +57,21 @@ mongoose.connect(db, (err) => {
 
     if (!result) {
       res.send({
-        message: 'Incorrect Login or Password'
+        message: 'Incorrect',
+        status : '401'
       });
       console.log(result, req.body.email)
     }
     if (!bcrypt.compareSync(req.body.password , result.password )){
       res.send({
-        message: 'Incorrect Login or Password'
+        message: 'Incorrect',
+        status : '401'
       });
       console.log(result, req.body.password)
     } else {
-      res.send({
-        message: 'ok', userToken : jwt.sign({data:result},'security_pass')
+      res.status(200).send({
+        message: 'ok', userToken : jwt.sign({data:result},'security_pass'),
+        status : '200'
       })
     }
 
@@ -92,7 +95,7 @@ router.get('/userbyid/:id', async (req, res) => {
   const idUser = {_id: req.params.id}
     const result = await userModel.findById(idUser);
     res.send(result);
-  
+
   });
 
   // find all users

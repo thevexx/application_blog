@@ -8,12 +8,20 @@
     		<form  [formGroup]="addarticles">
     		    <div class="form-group">
     		        <label for="title">Title <span class="require">*</span></label>
-    		        <input type="text" class="form-control" name="title" fo  formControlName="title"/>
+                <input type="text" class="form-control" name="titleArticle" fo  formControlName="title"/>
+                <div class="validations" *ngIf="addarticles.touched">
+                  <i class="fa fa-check-circle" style="color:green;" *ngIf="addarticles.controls.title.valid">Title Valid</i>
+                  <i class="fa fa-times-circle" style="color:firebrick;" *ngIf="addarticles.controls.title.invalid"> Title should be minimum 4 characters long</i>
+                </div>
     		    </div>
 
     		    <div class="form-group">
     		        <label for="description">Description<span class="require">*</span></label>
-    		        <textarea rows="5" class="form-control" name="description"  formControlName="content"></textarea>
+                <textarea rows="5" class="form-control" name="description"  formControlName="content"></textarea>
+                <div class="validations" *ngIf="addarticles.touched">
+                  <i class="fa fa-check-circle" style="color:green;" *ngIf="addarticles.controls.content.valid">Content Valid</i>
+                  <i class="fa fa-times-circle" style="color:firebrick;" *ngIf="addarticles.controls.content.invalid"> Content should be minimum 4 characters long</i>
+                </div>
     		    </div>
 
     		    <div class="form-group">
@@ -21,7 +29,7 @@
     		    </div>
 
     		    <div class="form-group">
-    		        <button type="submit" class="btn btn-primary" (click)="addSubject()">
+    		        <button type="submit" class="btn btn-primary" (click)="addSubject()" id="submitArticle" [disabled]="!addarticles.valid">
     		            Create
     		        </button>
 

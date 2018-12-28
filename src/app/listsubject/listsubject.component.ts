@@ -18,7 +18,7 @@ export class ListsubjectComponent implements OnInit {
 
   constructor(private apiblogservice: ApiblogService, private router: Router, private fb: FormBuilder) {
     this.editArticle = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(4)]],
+      title: ['', [Validators.required, Validators.maxLength(200), Validators.minLength(4)]],
      content: ['', [Validators.required, Validators.maxLength(8000), Validators.minLength(4)]],
     });
 

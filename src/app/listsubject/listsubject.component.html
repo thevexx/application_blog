@@ -1,78 +1,75 @@
-
-          <div class="container-fluid " >
-            <div class="row " *ngFor="let item of result" >
-
-
-              <div class="col-md-8 offset-md-2">
-                <div class="card">
-                  <h5 class="card-header">{{item.title}}</h5>
-                  <div class="card-body">
-                    <h5 class="card-title">{{item.date | date}}</h5>
-
-                     <p class="card-text">{{item.content}}</p>
-                    <br>
-               
-                    <h5>Comments </h5>
-                      <p *ngFor="let items of item.comments"> {{items.content}}</p>
-            
-
-                    <i class="fas fa-user"></i>&nbsp;{{item.author.name}} <button type="submit" class="btn btn-warning px-3" (click)="deleteSubject(item._id)">
-                      Delete</button>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="update(item._id)">
-                       Update
-                      </button>
-
-
-                  </div>
-
-
-
-              </div>
-              <br>
-
-            </div>
-
-          </div>
-
-          </div>
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="clicked">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
+<div class="container-fluid ">
+  <div class="row " *ngFor="let item of result">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <h5 class="card-header">{{item.title}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">{{item.date | date}}</h5>
+          <p class="card-text">{{item.content}}</p>
+          <br>
+          <h5>Comments </h5>
+          <p *ngFor="let items of item.comments"> {{items.content}}</p>
+          <i class="fas fa-user"></i>&nbsp;{{item.author.name}}
+          <button type="submit" class="btn btn-warning px-3" (click)="deleteSubject(item._id)" id="btndelete">
+            Delete</button>
+          <button type="button" type="submit" class="btn btn-primary" id="btnupdate" data-toggle="modal"  data-target="#exampleModal"
+            (click)="update(item._id)">
+            Update
           </button>
         </div>
-        <div class="modal-body">
-            <form  [formGroup]="editArticle">
-                <div class="form-group">
-                    <label for="title">Title <span class="require">*</span></label>
-                    <input type="text" class="form-control" name="title" fo value="{{ clicked.title }}" formControlName="title"/>
-                </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
 
-                <div class="form-group">
-                    <label for="description">Description<span class="require">*</span></label>
-                    <textarea rows="5" class="form-control" name="description" value="{{ clicked.content }}"  formControlName="content"></textarea>
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  *ngIf="clicked">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
-                <div class="form-group">
-                    <p><span class="require">*</span> - required fields</p>
-                </div>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editArticle">
+          <div class="form-group">
+            <label for="title">Title <span class="require">*</span></label>
+            <input type="text" class="form-control" name="title" fo value="{{ clicked.title }}" formControlName="title"
+              id="updateTitleArticle" />
+          </div>
+          <div class="validations" *ngIf="editArticle.touched">
+            <i class="fa fa-check-circle" style="color:green;" *ngIf="editArticle.controls.title.valid">Title Valid</i>
+            <i class="fa fa-times-circle" style="color:firebrick;" *ngIf="editArticle.controls.title.invalid"> Title
+              should be minimum 4 characters long</i>
+          </div>
+          <div class="form-group">
+            <label for="description">Description<span class="require">*</span></label>
+            <textarea rows="5" class="form-control" name="description" value="{{ clicked.content }}" formControlName="content"
+              id="updateContentArticle"></textarea>
+          </div>
+          <div class="validations" *ngIf="editArticle.touched">
+            <i class="fa fa-check-circle" style="color:green;" *ngIf="editArticle.controls.content.valid">Content Valid</i>
+            <i class="fa fa-times-circle" style="color:firebrick;" *ngIf="editArticle.controls.content.invalid">
+              Content should be minimum 4 characters long</i>
+          </div>
+          <div class="form-group">
+            <p><span class="require">*</span> - required fields</p>
+          </div>
 
-                <div class="form-group">
-                </div>
+          <div class="form-group">
+          </div>
 
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  (click)=" updateSubject(clicked._id)">Save changes</button>
-        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)=" updateSubject(clicked._id)" id="btnSaveChanges">Save
+          changes</button>
       </div>
     </div>
   </div>
-
+</div>

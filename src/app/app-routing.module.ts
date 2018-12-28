@@ -10,7 +10,7 @@ import { RouteGuard } from './route.guard';
 import { RoleGuard } from './role.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent,  canActivate : [RouteGuard, RoleGuard], data: { role : ['admin', 'user'] }},
   { path: 'addarticle', component: AddarticleComponent,  canActivate : [RouteGuard] },
   { path: 'register', component: RegisterComponent },

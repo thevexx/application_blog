@@ -62,18 +62,27 @@ getAllusers() {
 editUsers(id, data) {
   console.log('edit user id', id);
   console.log('edit user id data', data);
-  return this.http.put('http://localhost:8020/auth/updateuser/'+ id, data);
+  return this.http.put('http://localhost:8020/auth/updateuser/' + id, data);
 }
 
-getUserbyid(id){
-  return this.http.get('http://localhost:8020/auth/userbyid/'+ id)
+getUserbyid(id) {
+  return this.http.get('http://localhost:8020/auth/userbyid/' + id);
 }
 
 deleteUserbyId(id) {
-  return this.http.delete('http://localhost:8020/auth/removeuser/' + id)
+  return this.http.delete('http://localhost:8020/auth/removeuser/' + id);
 }
 
-deleteCommentbyId(id){
-  return this.http.delete('http://localhost:8020/blog/comment/' + id)
+deleteCommentbyId(id) {
+  return this.http.delete('http://localhost:8020/blog/comment/' + id);
+}
+
+sendEmail(usertoken: string) {
+  localStorage.setItem('EmailUser', usertoken);
+  console.log('EmailUser', usertoken);
+}
+sendPassword(usertoken: string) {
+  localStorage.setItem('PasswordUser', usertoken);
+  console.log('PasswordUser', usertoken);
 }
 }

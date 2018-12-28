@@ -35,6 +35,7 @@ const newArticle =  await new articleModel(req.body);
 //find all articles
 router.get('/article', async (req, res) => {
 const getArticle = await articleModel.find().populate({ path: 'author' }).populate({ path: 'comments' });
+;
 res.send(getArticle);
 (error) => {
   res.sendStatus(500)

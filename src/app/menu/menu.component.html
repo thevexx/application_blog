@@ -9,18 +9,14 @@
           <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active" *ngIf="isLoggedIn">
-            <a class="nav-link" routerLink="/addarticle">Add Article <span class="sr-only"></span></a>
+           <a class="nav-link" routerLink="/addarticle" id="btnaddarticle" type="submit">Add Article <span class="sr-only"></span></a>
           </li>
           <li class="nav-item active" *ngIf="isLoggedIn">
-              <a class="nav-link" routerLink="/listsubject">Edit Article <span class="sr-only"></span></a>
+              <a class="nav-link" routerLink="/listsubject" id="btneditarticle">Edit Article <span class="sr-only"></span></a>
             </li>
-
-        <!--<li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>-->
+            <li class="nav-item active" *ngIf="isLoggedIn">
+              <a class="nav-link" routerLink="/dashboard" id="btndashboard">Dashboard <span class="sr-only"></span></a>
+            </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0" *ngIf="!isLoggedIn">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/register">Register</button>
@@ -29,7 +25,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/login">Login</button>
       </form>
       <form class="form-inline mt-2 mt-md-0" *ngIf="isLoggedIn">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  (click)="logout()">Logout</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  (click)="logout()" id="btnlogout">Logout</button>
       </form>
     </div>
   </nav>
