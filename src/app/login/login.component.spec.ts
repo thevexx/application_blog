@@ -22,14 +22,13 @@ describe('Test Component LOGIN', () => {
   it('form invalid when empty', () => {
     expect(component).toBeDefined();
   });
-
   it('email and password valid', () => {
     const emailUser = component.formlogin.controls['email'];
     emailUser.setValue('za@gmail.com');
     const passwordUser = component.formlogin.controls['password'];
     passwordUser.setValue('12345678');
     expect(component.formlogin.valid).toBeTruthy();
-    expect(component.loginAuthor).toBeDefined();
+    component.loginAuthor();
 
 
   });
@@ -40,7 +39,7 @@ describe('Test Component LOGIN', () => {
     const passwordUser = component.formlogin.controls['password'];
     passwordUser.setValue('12345678');
     expect(component.formlogin.valid).toBeTruthy();
-
+    component.loginAuthor();
   });
 
   it('email valid and password invalid', () => {
@@ -49,6 +48,7 @@ describe('Test Component LOGIN', () => {
     const passwordUser = component.formlogin.controls['password'];
     passwordUser.setValue('kldj5845666');
     expect(component.formlogin.valid).toBeTruthy();
+    component.loginAuthor();
   });
 
   it('email invalid and password invalid', () => {
@@ -57,6 +57,9 @@ describe('Test Component LOGIN', () => {
     const passwordUser = component.formlogin.controls['password'];
     passwordUser.setValue('kldj5845666');
     expect(component.formlogin.valid).toBeTruthy();
+    component.loginAuthor();
   });
+
+
 
 });

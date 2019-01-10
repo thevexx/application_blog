@@ -18,7 +18,6 @@ export class MenuComponent implements OnInit {
         this.isLoggedIn = localStorage.getItem('usertoken') ? true : false;
       }
     });
-    this.ngOnInit();
   }
   logout() {
     localStorage.clear();

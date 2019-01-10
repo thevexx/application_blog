@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
 loginAuthor() {
+  console.log('hello login');
   if (this.formlogin.valid) {
     this.message = '';
     this.apiblogservice.loginUser(this.formlogin.value).subscribe(res => {
