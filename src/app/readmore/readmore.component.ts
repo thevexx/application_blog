@@ -1,48 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiblogService } from '../apiblog.service';
-import {  NavigationStart } from '@angular/router';
+ import { ApiblogService } from '../apiblog.service';
+import {  NavigationStart, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-readmore',
+  templateUrl: './readmore.component.html',
+  styleUrls: ['./readmore.component.css']
 })
-export class HomeComponent implements OnInit {
-  allArticles: any;
+export class ReadmoreComponent implements OnInit {
+
+  article: any;
   isLoggedIn: any;
   allComments: any;
   formComments: FormGroup;
   idUser: any;
   articleId = '';
-  read: any;
+  idArticle: any;
 
-  constructor(private apiblogservice: ApiblogService, private fb: FormBuilder, private router: Router) {
+  constructor(private apiblogservice: ApiblogService, private fb: FormBuilder, private url: ActivatedRoute) {
     this.formComments = this.fb.group({
       content: ['', [Validators.required, Validators.maxLength(200), Validators.minLength(4)]],
     });
    }
 
   ngOnInit() {
+    this.url.params.subscribe(res => {
+      console.log('url', res);
+      this.idArticle = res['id'];
+      console.log('id article', this.idArticle);
+    });
     /* get all articles*/
-    this.apiblogservice.getSubject().subscribe(res => {
-      this.allArticles = res.json();
-
+    this.apiblogservice.getSubjectbyId(this.idArticle).subscribe(res => {
+      this.article = res.json();
+      console.log('article', this.article);
   });
-
-    /* get all comments*/
-this.apiblogservice.getComment().subscribe(res => {
-  this.allComments = res.json().reverse();
-
-});
   this.isLoggedIn = localStorage.getItem('usertoken') ? true : false;
     if (event instanceof NavigationStart) {
       this.isLoggedIn = localStorage.getItem('usertoken') ? true : false;
     }
   }
 
-postComment(id) {
+postComment(idArticle) {
   if (this.formComments.valid) {
     const token = localStorage.getItem('usertoken');
     const userId = jwt_decode(token).data._id;
@@ -50,18 +49,12 @@ postComment(id) {
       'content': this.formComments.value.content,
       'author': userId
     };
-    this.apiblogservice.addComments(id, commentData).subscribe(res => {
+    this.apiblogservice.addComments(idArticle, commentData).subscribe(res => {
       console.log(res.json());
       this.ngOnInit();
     });
   }
 
 }
-readMore(id) {
 
-  this.read =  this.router.navigate(['/home/', id  ]);
-  console.log('read', this.read);
-  return this.read;
 }
-}
-

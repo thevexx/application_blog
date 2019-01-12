@@ -13,6 +13,7 @@ import { AddarticleComponent } from './addarticle/addarticle.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouteGuard } from './route.guard';
 import { RoleGuard } from './role.guard';
+import { ReadmoreComponent } from './readmore/readmore.component';
 
 
 
@@ -26,6 +27,7 @@ import { RoleGuard } from './role.guard';
     MenuComponent,
     AddarticleComponent,
     DashboardComponent,
+    ReadmoreComponent,
 
 
   ],

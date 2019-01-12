@@ -5,27 +5,12 @@
         <h5 class="card-header">{{item.title}}</h5>
         <div class="card-body">
           <h5 class="card-title">{{item.date | date}}</h5>
-          <p class="card-text">{{item.content}}</p>
+          <p class="card-text" >{{item.content}}</p>
           <i class="fas fa-user user-fa"></i> &nbsp;{{item.author.name}}
-          <h6>Comments :</h6>
-
-          <div class="row" *ngFor="let items of item.comments">
-            <div class="col-md-12">
-              <div class="update-nag">
-                <div class="update-split"><i class="glyphicon glyphicon-refresh"></i> <i class="fas fa-comment iconcomment"></i></div>
-                <div class="update-text">{{items.content}} </div>
-              </div>
-            </div>
+          <div>
+                <button type="submit" class="btn btn-success green btnreadmore" (click)="readMore(item._id)" id="btncomment"><i class="fa fa-share"></i>
+                  Read More</button>
           </div>
-
-          <div class="status-upload" *ngIf="isLoggedIn">
-            <form [formGroup]="formComments" id="formaddcomment">
-              <textarea placeholder="add comment" formControlName="content" id="contentComment"></textarea>
-
-              <button type="submit" class="btn btn-success green" (click)="postComment(item._id)" id="btncomment"><i class="fa fa-share"></i>
-                Post</button>
-            </form>
-          </div><!-- Status Upload  -->
 
         </div>
       </div>
