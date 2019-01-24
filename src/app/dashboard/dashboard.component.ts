@@ -30,7 +30,6 @@ export class DashboardComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(4)]],
       lastname: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
     });
 
     this.editArticle = this.fb.group({
