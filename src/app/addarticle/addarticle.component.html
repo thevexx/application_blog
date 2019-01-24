@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container allofall">
 	<div class="row">
 
 	    <div class="col-md-8 col-md-offset-2">
@@ -27,13 +27,20 @@
     		    <div class="form-group">
     		        <p><span class="require">*</span> - required fields</p>
     		    </div>
-
-    		    <div class="form-group">
-    		        <button type="submit" class="btn btn-primary" (click)="addSubject()" id="submitArticle" [disabled]="!addarticles.valid">
-    		            Create
+            <h2>Upload Image</h2>
+            <div class="btnall">
+              <div class="bttnbrowse">
+            <label class="btn btn-default btn-file " id="btnbrowse">
+                Browse <input type="file" style="display: none;" formControlName="imagePath" (change)="filechangeEvent($event)" id="btnupload" >
+            </label>
+          </div>
+    		    <div class="form-group ">
+    		        <button type="submit" class="btn btn-primary btncreate" (click)="addSubject();uploadFile($event)" id="submitArticle" [disabled]="addarticles.invalid">
+    		          <i class="fas fa-plus"></i>   Create
     		        </button>
 
-    		    </div>
+            </div>
+          </div>
 
     		</form>
 		</div>

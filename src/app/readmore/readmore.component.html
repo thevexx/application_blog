@@ -2,27 +2,31 @@
   <div class="row " >
     <div class="col-md-8 offset-md-2">
       <div class="card">
-        <h5 class="card-header">{{article?.title}}</h5>
+        <h5 class="card-header headtitle">{{article?.title}}</h5>
         <div class="card-body">
-          <h5 class="card-title">{{article?.date | date}}</h5>
-          <p class="card-text">{{article?.content}}</p>
-          <i class="fas fa-user user-fa"></i> &nbsp;{{article?.author.name}}
-          <h6>Comments :</h6>
+          <div>
+            <i class="fas fa-user user-fa"></i> &nbsp;{{article?.author.name}}
+           in {{article?.date | date}} </div>
+            <img class="imgarticle" src="{{article?.imagePath}}">
+          <p class="card-text txtarticle">{{article?.content}}</p>
 
-          <div class="row" *ngFor="let item of article?.comments">
+          <h5 class="cmt">Comments :</h5>
+
+          <div class="row cmtbare" *ngFor="let item of article?.comments">
             <div class="col-md-12">
               <div class="update-nag">
-                <div class="update-split"><i class="glyphicon glyphicon-refresh"></i> <i class="fas fa-comment iconcomment"></i></div>
+                <div class="update-split userimg"><i class="glyphicon glyphicon-refresh"></i> <i class="fas fa-user-alt "></i></div>
                 <div class="update-text"> {{item.content}}  </div>
+
               </div>
             </div>
           </div>
 
           <div class="status-upload" *ngIf="isLoggedIn">
-            <form [formGroup]="formComments" id="formaddcomment">
+            <form class="cmtbare" [formGroup]="formComments" id="formaddcomment">
               <textarea placeholder="add comment" formControlName="content" id="contentComment"></textarea>
 
-              <button type="submit" class="btn btn-success green" (click)="postComment(article._id)" id="btncomment"><i class="fa fa-share"></i>
+              <button type="submit" class="btn btn-success btnsendcmt" (click)="postComment(article._id)" id="btncomment"><i class="fa fa-share"></i>
                 Post</button>
             </form>
           </div><!-- Status Upload  -->

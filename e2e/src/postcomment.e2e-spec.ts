@@ -1,4 +1,4 @@
-import { PostComment } from './postcomment.po';
+/*import { PostComment } from './postcomment.po';
 import {browser} from 'protractor';
 
 describe('Test Comment', () => {
@@ -18,6 +18,10 @@ describe('Test Comment', () => {
      browser.sleep(2000);
      const backendLocalStorage = browser.executeScript('return window.localStorage.getItem(\'response\');');
      expect(backendLocalStorage).toEqual(testBackend);
+     browser.pause();
+     browser.sleep(2000);
+     page.readMore().click();
+     console.log('click read more');
      page.getTextComment().sendKeys('New comment');
 page.submitComment().click();
 browser.sleep(5000);
@@ -31,8 +35,9 @@ browser.sleep(5000);
      browser.sleep(2000);
      const backendLocalStorage = browser.executeScript('return window.localStorage.getItem(\'response\');');
      expect(backendLocalStorage).toEqual(testBackend);
+     page.readMore().click();
      page.getTextComment().sendKeys('Net');
 page.submitComment().click();
 browser.sleep(5000);
    });
-});
+});*/

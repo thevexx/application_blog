@@ -31,7 +31,7 @@ export class ListsubjectComponent implements OnInit {
     console.log('id utilisateur', this.userId);
     this.apiblogservice.subjectUser(this.userId).subscribe(res => {
       this.result = res.json();
-      console.log('response subjectuser', this.result);
+      console.log('response subjectuser', this.result[0]._id);
     });
 this.apiblogservice.getComment().subscribe(res => {
   this.comment = res.json();
@@ -43,6 +43,7 @@ this.apiblogservice.getComment().subscribe(res => {
   deleteSubject(id) {
       this.apiblogservice.deleteArticle( id).subscribe(res => {
         console.log('delete article', res);
+        this.ngOnInit();
       });
 
   }

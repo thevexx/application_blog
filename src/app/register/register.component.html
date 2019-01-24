@@ -3,9 +3,9 @@
   <div class="row justify-content-center">
   <div class="col-md-6">
   <div class="card">
-  <header class="card-header">
+  <header class="card-header headbar">
 
-    <h4 class="card-title mt-2">Sign up</h4>
+    <h4 class="card-title mt-2 txtsign">Sign up</h4>
   </header>
   <article class="card-body">
   <form [formGroup]="formregister" id="registerForm">
@@ -42,14 +42,14 @@
 
     <div class="form-group">
       <label>Create password</label>
-        <input class="form-control" type="password" formControlName="password" name="password" placeholder=" ">
+        <input class="form-control  " type="password" formControlName="password" name="password" placeholder=" ">
         <div class="validations" *ngIf="formregister.touched">
             <i class="fa fa-check-circle" style="color:green;" *ngIf="formregister.controls.password.valid">password Valid</i>
             <i class="fa fa-times-circle" style="color:firebrick;" *ngIf="formregister.controls.password.invalid"> Password should be minimum 8 characters long</i>
           </div>
     </div> <!-- form-group end.// -->
       <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block" (click)="registerForm()" id="submitRegister"> Register  </button>
+          <button type="submit" class="btn btn-primary btn-block regiterbtn" (click)="registerForm()" id="submitRegister"> Sign up  </button>
       </div> <!-- form-group// -->
       <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
   </form>

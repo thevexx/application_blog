@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouteGuard } from './route.guard';
 import { RoleGuard } from './role.guard';
 import { ReadmoreComponent } from './readmore/readmore.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -36,7 +37,8 @@ import { ReadmoreComponent } from './readmore/readmore.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
 
   ],
   providers: [RouteGuard, RoleGuard],

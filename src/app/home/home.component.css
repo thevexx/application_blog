@@ -138,27 +138,27 @@ background: none repeat scroll 0 0 #606060;
 color: #fff;
 }
 .status-upload form button {
-border: medium none;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
--ms-border-radius: 4px;
--o-border-radius: 4px;
-border-radius: 4px;
-color: #fff;
-float: right;
-font-family: Lato;
-font-size: 14px;
-letter-spacing: 0.3px;
-margin-right: 9px;
-margin-top: 9px;
-padding: 6px 15px;
-}
-.dropdown > a > span.green:before {
-border-left-color: #2dcb73;
-}
-.status-upload form button > i {
-margin-right: 7px;
-}
+  border: medium none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  color: #fff;
+  float: right;
+  font-family: Lato;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  margin-right: 9px;
+  margin-top: 9px;
+  padding: 6px 15px;
+  }
+  .dropdown > a > span.green:before {
+  border-left-color: #2dcb73;
+  }
+  .status-upload form button > i {
+  margin-right: 7px;
+  }
 
 .user-fa{
   font-size: 20px
@@ -229,21 +229,61 @@ margin-right: 7px;
 .iconcomment {
   font-size: 25px;
   padding: 0px;
-  margin : 5px
+  margin : 5px;
 }
 
 
-.btnreadmore {
+.imgarticle {
+  float: left;
+  max-width: 30%;
+  min-width: 200px !important;
+  margin-right : 20px !important;
+  padding-top: 1%;
 
+}
+.btnread{
+  border-radius: 1000px !important;
+  margin-left: 80%;
+  background-color: rgb(7, 74, 219) !important;
+  min-width: 170px !important;
+
+
+
+}
+.headarticle {
+
+  background-color: #F7F7F7;
+  color : black;
+  font-weight: 400 !important;
+
+}
+.usericon {
+justify-content: right;
+}
+.footerarticle {
+  background-color: rgba(41, 41, 41, 0.144) !important;
+  color : black !important;
+}
+.textarticle {
+  padding-top: 1%;
 }
 
 
+@media (min-width: 300px) and (max-width: 460px) {
+  .imgarticle { float : none;
+    text-align: center;
+    min-width: 250px !important;
+    padding-bottom: 15px;
+}
 
+}
+@media (min-width: 300px) and (max-width: 1332px) {
 
+  .btnread{
+    margin-left: 0%;
+}
 
-
-
-
+}
 
 
 

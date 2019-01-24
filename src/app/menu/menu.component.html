@@ -1,31 +1,33 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" routerLink="/home">My.Blog</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 menutop">
+    <a class="navbar-brand active" routerLink="/home"><i class="fab fa-blogger"></i> &nbsp;My.Blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item allbtnmenu">
+          <a class="nav-link buthome" routerLink="/home"><i class="fas fa-home "></i> Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item active" *ngIf="isLoggedIn">
-           <a class="nav-link" routerLink="/addarticle" id="btnaddarticle" type="submit">Add Article <span class="sr-only"></span></a>
+        <li class="nav-item" *ngIf="isLoggedIn">
+           <a class="nav-link butadd" routerLink="/addarticle" id="btnaddarticle" ><i class="fas fa-plus-circle"></i> Add Article <span class="sr-only"></span></a>
           </li>
-          <li class="nav-item active" *ngIf="isLoggedIn">
-              <a class="nav-link" routerLink="/listsubject" id="btneditarticle">Edit Article <span class="sr-only"></span></a>
+          <li class="nav-item " *ngIf="isLoggedIn">
+              <a class="nav-link butedit" routerLink="/listsubject" id="btneditarticle"><i class="fas fa-edit"></i> Edit Article <span class="sr-only"></span></a>
             </li>
-            <li class="nav-item active" *ngIf="isLoggedIn">
-              <a class="nav-link" routerLink="/dashboard" id="btndashboard">Dashboard <span class="sr-only"></span></a>
+            <li class="nav-item" *ngIf="isLoggedIn">
+              <a class="nav-link butdash" routerLink="/dashboard" id="btndashboard"><i class="fas fa-tachometer-alt"></i> Dashboard <span class="sr-only"></span></a>
             </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0" *ngIf="!isLoggedIn">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/register">Register</button>
+        <a class="nav-link userlg"  routerLink="/register"><i class="fas fa-user-plus"></i>  Register</a>
       </form>
-      <form class="form-inline mt-2 mt-md-0" *ngIf="!isLoggedIn">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/login">Login</button>
+      <form class="form-inline mt-2 mt-md-0"  *ngIf="!isLoggedIn">
+        <a class="nav-link userlg" routerLink="/login"><i class="fas fa-sign-in-alt"></i>  Login</a>
       </form>
-      <form class="form-inline mt-2 mt-md-0" *ngIf="isLoggedIn">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  (click)="logout()" id="btnlogout">Logout</button>
+      <form class="form-inline mt-2 mt-md-0 userlg" *ngIf="isLoggedIn">
+
+        <a class="nav-link " (click)="logout()" id="btnlogout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
       </form>
     </div>
   </nav>

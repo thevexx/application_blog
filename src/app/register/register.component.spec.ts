@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormsModule, Validator, FormGroup, FormBuilder } f
 import { RouterTestingModule } from '@angular/router/testing';
 import { RegisterComponent } from './register.component';
 import { HttpModule } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
@@ -10,7 +11,7 @@ describe('RegisterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RegisterComponent ],
-      imports: [ReactiveFormsModule, FormsModule, RouterTestingModule, HttpModule]
+      imports: [ReactiveFormsModule, FormsModule, RouterTestingModule, HttpModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));
@@ -24,18 +25,31 @@ describe('RegisterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('all input valid', () => {
+ it('all input valid', () => {
     const nameUser = component.formregister.controls['name'];
     nameUser.setValue('ilyes');
     const lsnameUser = component.formregister.controls['lastname'];
     lsnameUser.setValue('maamouri');
     const emailUser = component.formregister.controls['email'];
-    emailUser.setValue('ilyess@gmail.com');
+    emailUser.setValue('issseeeeaooaes@gmail.com');
     const passUser = component.formregister.controls['password'];
     passUser.setValue('12345678');
     expect(component.formregister.valid).toBeTruthy();
     component.registerForm();
+
+
+  });
+  it('all input invalid', () => {
+    const nameUser = component.formregister.controls['name'];
+    nameUser.setValue('i');
+    const lsnameUser = component.formregister.controls['lastname'];
+    lsnameUser.setValue('maa');
+    const emailUser = component.formregister.controls['email'];
+    emailUser.setValue('ilyessgmail.com');
+    const passUser = component.formregister.controls['password'];
+    passUser.setValue('123456');
+    expect(component.formregister.invalid).toBeTruthy();
+  component.registerForm();
 
 
   });
@@ -48,9 +62,7 @@ describe('RegisterComponent', () => {
     emailUser.setValue('maamouri@gmail.com');
     const passUser = component.formregister.controls['password'];
     passUser.setValue('12345678');
-    expect(component.formregister.valid).toBeFalsy();
-    expect(component.formregister.controls['name'].valid).toBeFalsy();
-    expect(component.formregister.controls['name'].errors).toBeDefined();
+   expect(component.formregister.controls['name'].invalid).toBeTruthy();
     component.registerForm();
 
   });
@@ -59,14 +71,13 @@ describe('RegisterComponent', () => {
     const nameUser = component.formregister.controls['name'];
     nameUser.setValue('elyes');
     const lsnameUser = component.formregister.controls['lastname'];
-    lsnameUser.setValue('ma');
+    lsnameUser.setValue('eoo');
     const emailUser = component.formregister.controls['email'];
-    emailUser.setValue('maamouri@gmail.com');
+    emailUser.setValue('pp@gmail.com');
     const passUser = component.formregister.controls['password'];
-    passUser.setValue('12345678');
-    expect(component.formregister.valid).toBeFalsy();
-    expect(component.formregister.controls['lastname'].valid).toBeFalsy();
-    expect(component.formregister.controls['lastname'].errors).toBeDefined();
+    passUser.setValue('123456789');
+     expect(component.formregister.controls['lastname'].errors).toBeDefined();
+  expect(component.formregister.controls['lastname'].invalid).toBeTruthy();
     component.registerForm();
 
   });
@@ -79,13 +90,12 @@ describe('RegisterComponent', () => {
     emailUser.setValue('thebest');
     const passUser = component.formregister.controls['password'];
     passUser.setValue('12345678');
-    expect(component.formregister.valid).toBeFalsy();
-    expect(component.formregister.controls['email'].valid).toBeFalsy();
-    expect(component.formregister.controls['email'].errors).toBeDefined();
+    expect(component.formregister.controls['email'].invalid).toBeTruthy();
     component.registerForm();
 
   });
-  /*it('password invalid', () => {
+
+  it('password invalid', () => {
     const nameUser = component.formregister.controls['name'];
     nameUser.setValue('elyes');
     const lsnameUser = component.formregister.controls['lastname'];
@@ -94,9 +104,7 @@ describe('RegisterComponent', () => {
     emailUser.setValue('elyes@gmail.com');
     const passUser = component.formregister.controls['password'];
     passUser.setValue('123456');
-    expect(component.formregister.valid).toBeFalsy();
-    expect(component.formregister.controls['password'].valid).toBeFalsy();
-    expect(component.formregister.controls['paswword'].errors).toBeDefined();
+  expect(component.formregister.controls['password'].invalid).toBeTruthy();
 
-  });*/
+  });
 });

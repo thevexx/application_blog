@@ -57,14 +57,14 @@ mongoose.connect(db, (err) => {
 
     if (!result) {
       res.send({
-        message: 'Incorrect',
+        message: 'Incorrect login or password',
         status : '401'
       });
       console.log(result, req.body.email)
     }
     if (!bcrypt.compareSync(req.body.password , result.password )){
       res.send({
-        message: 'Incorrect',
+        message: 'Incorrect login or password',
         status : '401'
       });
       console.log(result, req.body.password)

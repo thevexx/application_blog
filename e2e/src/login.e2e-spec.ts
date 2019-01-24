@@ -20,14 +20,20 @@ describe('TEST', () => {
      expect(backendLocalStorage).toEqual(testBackend);
      browser.sleep(4000);
      page.btnAddarticle().click();
-     page.gettitleArticle().sendKeys('first article');
+     page.gettitleArticle().sendKeys('upload image');
      page.getDescriptionArticle().sendKeys('my first article in blog');
-     page.getsubmitArticle();
-     page.getLogoutButton();
      browser.sleep(4000);
+     const path = require('path');
+     const fileToUpload = '../../01.jpg';
+        const linkFile = path.resolve(__dirname, fileToUpload);
+         console.log('**************************************pathh********************************', linkFile);
+     page.btnInput().sendKeys(linkFile);
+
+page.getsubmitArticle().click();
+browser.sleep(4000);
    });
 
-    // login and password valid and title article invalid
+    /* login and password valid and title article invalid
   it(' login and password valid and title article invalid', () => {
     page.getEmailTextbox().sendKeys('za@gmail.com');
      page.getPasswordTextbox().sendKeys('12345678');
@@ -108,6 +114,6 @@ it('login invalid and password valid', () => {
           const valLocalStorage = browser.executeScript('return window.localStorage.getItem(\'response\');');
           expect(valLocalStorage).toEqual(testBackend);
           browser.sleep(5000);
-        });
+        });*/
 });
 

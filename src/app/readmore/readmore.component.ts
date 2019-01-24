@@ -30,10 +30,10 @@ export class ReadmoreComponent implements OnInit {
       this.idArticle = res['id'];
       console.log('id article', this.idArticle);
     });
-    /* get all articles*/
+
     this.apiblogservice.getSubjectbyId(this.idArticle).subscribe(res => {
       this.article = res.json();
-      console.log('article', this.article);
+      console.log('comment', this.article.comments.length);
   });
   this.isLoggedIn = localStorage.getItem('usertoken') ? true : false;
     if (event instanceof NavigationStart) {

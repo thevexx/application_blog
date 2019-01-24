@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
   idUser: any;
   articleId = '';
   read: any;
-
+i;
+  nbrComments: any;
   constructor(private apiblogservice: ApiblogService, private fb: FormBuilder, private router: Router) {
     this.formComments = this.fb.group({
       content: ['', [Validators.required, Validators.maxLength(200), Validators.minLength(4)]],
@@ -27,13 +28,18 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     /* get all articles*/
     this.apiblogservice.getSubject().subscribe(res => {
-      this.allArticles = res.json();
+      this.allArticles = res.json().reverse();
+      for (this.i = 0; this.i < this.allArticles.length; this.i++) {
+       this.nbrComments = this.allArticles[this.i].comments;
+       console.log('length comment', this.nbrComments);
+      }
 
   });
 
     /* get all comments*/
 this.apiblogservice.getComment().subscribe(res => {
   this.allComments = res.json().reverse();
+  console.log('comment',  this.allComments);
 
 });
   this.isLoggedIn = localStorage.getItem('usertoken') ? true : false;
@@ -58,7 +64,6 @@ postComment(id) {
 
 }
 readMore(id) {
-
   this.read =  this.router.navigate(['/home/', id  ]);
   console.log('read', this.read);
   return this.read;

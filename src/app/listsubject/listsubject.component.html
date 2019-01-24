@@ -2,20 +2,27 @@
   <div class="row " *ngFor="let item of result">
     <div class="col-md-8 offset-md-2">
       <div class="card">
-        <h5 class="card-header">{{item.title}}</h5>
+        <h5 class="card-header headarticle">{{item.title}}</h5>
         <div class="card-body">
-          <h5 class="card-title">{{item.date | date}}</h5>
-          <p class="card-text">{{item.content}}</p>
-          <br>
-          <h5>Comments </h5>
-          <p *ngFor="let items of item.comments"> {{items.content}}</p>
-          <i class="fas fa-user"></i>&nbsp;{{item.author.name}}
-          <button type="submit" class="btn btn-warning px-3" (click)="deleteSubject(item._id)" id="btndelete">
-            Delete</button>
-          <button type="button" type="submit" class="btn btn-primary" id="btnupdate" data-toggle="modal"  data-target="#exampleModal"
+            <img class="imgarticle"src="{{item.imagePath}}">
+
+          <p class="card-text textarticle">{{item.content}}</p>
+          <div class="allbtn">
+            <div class="btn1">
+          <button type="submit" class="btn btn-warning px-3 btnedit" (click)="deleteSubject(item._id)" id="btndelete">
+            <i class="fas fa-trash-alt"></i> Delete</button> </div>
+            <div class="btn2">
+          <button type="button" type="submit" class="btn btn-primary btndelete" id="btnupdate" data-toggle="modal"  data-target="#exampleModal"
             (click)="update(item._id)">
-            Update
+            <i class="fas fa-edit"></i> Update
           </button>
+        </div>
+        </div>
+        </div>
+        <div class="card-footer text-muted footerarticle">
+            <i class="fas fa-user user-fa"></i> &nbsp;{{item.author.name}}
+            &nbsp; <i class="far fa-calendar-alt"></i> {{item.date | date}}
+
         </div>
       </div>
       <br>

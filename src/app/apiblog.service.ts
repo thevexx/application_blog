@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiblogService {
-  constructor(private http: Http) { }
+  constructor(private http: Http, private addimage: HttpClient) { }
 
   registerUser(data) {
     console.log('data register', data);
@@ -75,6 +76,13 @@ deleteUserbyId(id) {
 
 deleteCommentbyId(id) {
   return this.http.delete('http://localhost:8020/blog/comment/' + id);
+}
+
+uploadfile(file) {
+console.log('myfile service', file);
+  const headers = new HttpHeaders();
+  headers.set('Content-Type', 'form-data');
+  return this.addimage.post('http://localhost:8020/blog/upload/', file, {headers} );
 }
 
 sendEmail(usertoken: string) {

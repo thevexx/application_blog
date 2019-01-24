@@ -3,13 +3,13 @@
     <div class="row justify-content-center">
     <div class="col-md-6">
     <div class="card">
-    <header class="card-header">
+    <header class="card-header headbar">
 
-      <h4 class="card-title mt-2">Sign in</h4>
+      <h4 class="card-title mt-2 txtsign">Sign in</h4>
     </header>
     <article class="card-body">
     <form [formGroup]="formlogin">
-
+      <p><img class="imgphoto" src="../../assets/user.png"></p>
       <div class="form-group">
 
         <label>Email address</label>
@@ -21,10 +21,10 @@
         <label>Password</label>
           <input class="form-control" type="password" formControlName="password" name="password">
 
-          <label class="error">{{message}}</label>
+          <label class="txterror">{{message}}</label>
       </div>
       <div class="form-group">
-        <button id="btnSubmit" type="submit" class="btn btn-primary btn-block" (click)="loginAuthor()" > Login  </button>
+        <button id="btnSubmit" type="submit" class="btn btn-primary btn-block btnlogin" (click)="loginAuthor()" > Login  </button>
 
 
     </div>

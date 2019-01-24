@@ -39,5 +39,8 @@ editTitleArticle() {
 editContentArticle() {
   return element(by.css('#updateContentArticle'));
 }
+btnInput() {
+  return element(by.css('#btnupload'));
+}
 }
 

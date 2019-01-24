@@ -12,7 +12,20 @@ const articleModel = mongoose.model('article', articleShema);
 const commentShema = require('../model/comment');
 const commentModel = mongoose.model('comment', commentShema);
 
+var multer = require('multer');
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+var upload = multer({
+  storage: storage
+});
 
 //const allArticles = mongoose.model('articles', allArticles)
 mongoose.connect(db, (err) => {
@@ -20,11 +33,19 @@ mongoose.connect(db, (err) => {
 
 });
 
+
+// upload image
+
+router.post('/upload', upload.single('file'), function (req, res, next) {
+  res.send(req.file);
+
+
+    });
 //post article
 router.post('/article', async (req, res) => {
 const newArticle =  await new articleModel(req.body);
-  console.log("article", newArticle)
-  res.send({message:'article add ok'});
+newArticle.imagePath = newArticle.imagePath.replace("C:\\fakepath\\","uploads/");
+ res.send({message:'article add ok'});
   newArticle.save();
   (error) => {
     res.sendStatus(500)
@@ -102,6 +123,21 @@ newComment.save();
  router.delete('/comment/:id', async (req, res) => {
   const result = await commentModel.remove({ _id: req.params.id });
   res.send(result)
+});
+
+//saerch with title article
+router.get('/search/:title', function(req, res, next) {
+  var searchContent = { title: req.params.title };
+
+  if(req.params.title)
+console.log('search', searchContent)
+    articleModel.find(searchContent, function(err, mysearch){
+    if (err) {
+      res.status(400);
+      res.send();
+    }
+    res.send(mysearch);
+  })
 });
 
 module.exports = router;

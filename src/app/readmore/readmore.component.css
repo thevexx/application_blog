@@ -192,7 +192,7 @@ margin-right: 7px;
 }
 
 .update-nag > .update-split{
-  background: #337ab7;
+  background: rgb(7, 74, 219);
   width: 33px;
   float: left;
   color: #fff!important;
@@ -475,3 +475,46 @@ body {
 /** =====================
 * Responsive
 ========================*/
+.imgarticle {
+  float: left;
+  max-width: 40% !important;
+  min-width: 200px !important;
+  margin-right : 20px !important;
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+.txtarticle
+{
+  padding-top : 6px;
+  color: black !important;
+}
+.headtitle{
+  font-weight: 400;
+}
+.cmt {
+  margin-bottom: 13px;
+}
+.cmtbare
+{
+  border-color: black !important;
+
+}
+.usercmt{
+  background-color: rgb(7, 74, 219) !important;
+}
+.userimg {
+  padding-top : 6px;
+
+}
+.btnsendcmt {
+  background-color: rgb(7, 74, 219) !important;
+}
+h5 {
+  clear: left;
+}
+@media (min-width: 300px) and (max-width: 460px) {
+  .imgarticle { float : none;
+    min-width: 250px !important;
+    padding-bottom: 15px;
+}
+}

@@ -130,6 +130,49 @@ h1 {
   max-height: 30%;
   overflow: auto;
 }
+.footerarticle {
+  background-color: rgba(41, 41, 41, 0.144) !important;
+  color : black !important;
+}
+
+.imgarticle {
+  float: left;
+  max-width: 30%;
+  min-width: 200px !important;
+  margin-right: 20px !important;
+  padding-top: 1%;
+
+}
+.textarticle {
+  padding-top: 1%;
+  color: black !important;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.headarticle {
+
+  background-color: #F7F7F7;
+  color : black;
+  font-weight: 400 !important;
+
+}
+
+.btndelete {
+  border-radius: 1000px !important;
+
+  background-color: rgb(7, 74, 219) !important;
+  min-width: 120px !important;
+}
+.btnedit {
+  border-radius: 1000px !important;
+  min-width: 120px !important;
+}
+
+.allbtn {
+  display: flex;
+
+}
 
 @media screen and (max-width: 700px){
   .box{
@@ -138,4 +181,13 @@ h1 {
   .popup{
     width: 70%;
   }
+  @media (min-width: 300px) and (max-width: 460px) {
+    .imgarticle { float : none;
+      text-align: center;
+      min-width: 250px !important;
+      padding-bottom: 15px;
+  }
+
+  }
+
 }

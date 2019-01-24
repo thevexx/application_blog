@@ -2,15 +2,20 @@
   <div class="row " *ngFor="let item of allArticles">
     <div class="col-md-8 offset-md-2">
       <div class="card">
-        <h5 class="card-header">{{item.title}}</h5>
+        <h5 class="card-header headarticle">{{item.title}}</h5>
         <div class="card-body">
-          <h5 class="card-title">{{item.date | date}}</h5>
-          <p class="card-text" >{{item.content}}</p>
-          <i class="fas fa-user user-fa"></i> &nbsp;{{item.author.name}}
-          <div>
-                <button type="submit" class="btn btn-success green btnreadmore" (click)="readMore(item._id)" id="btncomment"><i class="fa fa-share"></i>
+
+          <img class="imgarticle"src="{{item.imagePath}}">
+          <p class="card-text" class="textarticle">{{item.content}}</p>
+
+                <button type="button" class="btn btn-primary btn-rounded btnread"  (click)="readMore(item._id)" id="btncomment" id="btnreadmore"><i class="fa fa-share"></i>
                   Read More</button>
-          </div>
+
+        </div>
+        <div class="card-footer text-muted footerarticle">
+            <i class="fas fa-user user-fa"></i> &nbsp;{{item.author.name}}
+            &nbsp; <i class="far fa-calendar-alt"></i> {{item.date | date}}
+
 
         </div>
       </div>
@@ -21,3 +26,5 @@
 
 
 </div>
+
+

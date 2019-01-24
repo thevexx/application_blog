@@ -9,6 +9,8 @@ import * as jwt_decode from 'jwt-decode';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  inboundClick = true;
+  outboundClick = true;
   userId: any;
   userclick: any;
   editForm: FormGroup;
@@ -21,6 +23,7 @@ export class DashboardComponent implements OnInit {
   comments: any;
   clickComment: any;
   isLoggedIn: any;
+
 
   constructor(private apiblogservice: ApiblogService, private fb: FormBuilder) {
     this.editForm = this.fb.group({
@@ -39,12 +42,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = localStorage.getItem('usertoken') ? true : false; /*pour changer login par logout*/
       }
+
+
 // get all users
 getUsers() {
     this.userclick = this.apiblogservice.getAllusers().subscribe(res => {
       this.userclick = res.json();
        console.log('userClick', this.userclick);
-this.ngOnInit();
+
     });
 }
 // get user by id
@@ -58,7 +63,7 @@ editUser(id) {
   this.clickEdit = this.apiblogservice.editUsers(id, this.editForm.value).subscribe(res => {
     this.clickEdit = res.json();
     console.log('edit', this.clickEdit);
-    this.ngOnInit();
+
   });
 
 }
@@ -67,7 +72,6 @@ editUser(id) {
 removeUser(id) {
   this.deleteUser = this.apiblogservice.deleteUserbyId(id).subscribe(res => {
     this.deleteUser = res.json();
-    this.ngOnInit();
   });
 }
 

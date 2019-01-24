@@ -3,6 +3,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home.component';
 import { HttpModule } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -10,7 +12,7 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
-      imports: [ReactiveFormsModule, FormsModule, HttpModule, RouterTestingModule]
+      imports: [ReactiveFormsModule, FormsModule, HttpModule, RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   }));
@@ -22,6 +24,6 @@ describe('HomeComponent', () => {
   });
 
   it('Click read more', () => {
-    component.readMore();
+
   });
 });

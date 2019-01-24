@@ -1,0 +1,25 @@
+.menutop {
+  background-color: rgb(7, 74, 219)!important;
+}
+.userlg {
+
+  color: white !important;
+  cursor: pointer !important;
+  font-weight: 400 !important;
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+
+
+}
+
+.buthome, .butadd, .butedit, .butdash {
+  padding-right : 18px !important;
+  background: none;
+  border: none;
+  outline: none;
+  font-weight: 400;
+}
+.colorfont {
+  color: black
+}

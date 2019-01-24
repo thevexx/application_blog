@@ -2,8 +2,10 @@ const express = require('express');
 const bodyparser = require("body-parser");
 const port = 8020;
 const app = express();
+var cors = require('cors');
 
 
+app.use(cors());
 app.use(bodyparser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

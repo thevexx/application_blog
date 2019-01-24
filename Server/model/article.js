@@ -15,7 +15,8 @@ var article = new mongoose.Schema({
 comments:[{
   type : Schema.Types.ObjectId,
   ref : 'comment'
-}]
+}],
+imagePath : String,
 })
 module.exports = article;
 

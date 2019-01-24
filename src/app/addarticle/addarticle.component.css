@@ -36,3 +36,15 @@ border-color: rgb(53, 126, 189);
     margin-left:2px;
 }
 
+.btnall{
+  display: flex;
+}
+.allofall{
+  display: block !important;
+   margin-left: auto !important;
+   margin-right: auto !important;
+  }
+
+.btncreate{
+  background-color: green !important;
+}
